@@ -1,0 +1,466 @@
+como hacer para que esto se visualice en una pagina web 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio del Hueso Temporal</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding-top: 60px; /* Espacio para el header fijo */
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header fijo */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #0056b3; /* Color azul oscuro */
+            color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Asegura que esté encima de otros elementos */
+            display: flex;
+            justify-content space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #cccccc; /* Color más claro al pasar el ratón */
+        }
+
+        /* Contenedor principal (sidebar + contenido) */
+        .container {
+            display: flex;
+            /* margin-top: 60px; Redundante si body tiene padding-top */
+        }
+
+        /* Sidebar fijo */
+        .sidebar {
+            position: fixed;
+            top: 60px; /* Debajo del header */
+            left: 0;
+            width: 220px; /* Ancho del sidebar */
+            height: calc(100% - 60px); /* Altura restante después del header */
+            background-color: #e9ecef; /* Color gris claro */
+            padding: 20px;
+            overflow-y: auto; /* Scroll si el contenido es largo */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 999; /* Por debajo del header */
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #d0d0d0;
+            padding-left: 5px; /* Pequeño efecto visual */
+        }
+
+        /* Área de contenido principal */
+        .content {
+            margin-left: 240px; /* Espacio igual al ancho del sidebar + padding */
+            padding: 20px;
+            flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+        }
+
+        .content section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .content h3 {
+             color: #007bff; /* Color azul más claro */
+             margin-top: 20px;
+             margin-bottom: 10px;
+        }
+
+        .content ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+         /* Estilo para las sub-listas si las usas */
+        .content ul ul {
+            list-style: circle;
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
+        /* Placeholder para imágenes y modelos 3D */
+        .visual-placeholder {
+            width: 100%; /* O un ancho específico, ej: 400px */
+            height: 300px; /* Altura de ejemplo */
+            background-color: #cccccc; /* Gris */
+            color: #333;
+            text-align: center;
+            line-height: 300px; /* Centra el texto verticalmente */
+            margin: 20px 0;
+            font-style: italic;
+            border: 1px dashed #666;
+        }
+
+        /* Estilo para el menú contextual dentro del contenido (opcional) */
+        .section-nav {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+         .section-nav h4 {
+             margin-top: 0;
+             margin-bottom: 5px;
+         }
+         .section-nav ul {
+             list-style: none;
+             padding: 0;
+             display: flex; /* O block, si prefieres lista vertical */
+             flex-wrap: wrap;
+         }
+          .section-nav ul li {
+              margin-right: 15px;
+              margin-bottom: 5px;
+          }
+           .section-nav ul li a {
+               text-decoration: none;
+               color: #007bff;
+           }
+
+
+        /* Media queries para responsive design (ajustes para pantallas pequeñas) */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static; /* Sidebar ya no es fijo en pantallas pequeñas */
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 10px;
+            }
+
+            .container {
+                flex-direction: column; /* Stack sidebar and content */
+            }
+
+            .content {
+                margin-left: 0; /* No hay sidebar fijo a la izquierda */
+                padding: 10px;
+            }
+
+            body {
+                 padding-top: 50px; /* Ajustar padding-top si el header cambia de tamaño */
+            }
+
+             header {
+                 padding: 10px;
+             }
+
+             header h1 {
+                 font-size: 1.2em;
+             }
+
+             header nav ul {
+                 flex-direction: column; /* Stack menu items vertically */
+                 align-items: flex-start;
+             }
+
+             header nav ul li {
+                 margin-left: 0;
+                 margin-bottom: 5px;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Estudio del Hueso Temporal</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#escamosa">Escamosa</a></li>
+                <li><a href="#petrosa">Petrosa</a></li>
+                <li><a href="#timpanica">Timpánica</a></li>
+                <li><a href="#mastoidea">Mastoidea</a></li>
+                <li><a href="#estiloides">Estiloides</a></li>
+                </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Secciones</h2>
+            <ul>
+                <li><a href="#intro">Introducción</a></li>
+                <li><a href="#escamosa">Porción Escamosa</a></li>
+                <li><a href="#petrosa">Porción Petrosa</a></li>
+                <li><a href="#timpanica">Porción Timpánica</a></li>
+                <li><a href="#mastoidea">Porción Mastoidea</a></li>
+                <li><a href="#estiloides">Apófisis Estiloides</a></li>
+                <li><a href="#estructuras-internas">Estructuras Internas</a></li>
+                <li><a href="#vascularizacion">Vascularización e Inervación</a></li>
+                <li><a href="#osificacion">Osificación</a></li>
+                <li><a href="#tecnicas">Técnicas de Estudio</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+
+            <section id="intro">
+                <h2>Introducción</h2>
+                <p>El hueso temporal es un hueso par situado en la porción inferior y lateral del cráneo. Se encuentra posterior al hueso esfenoides (específicamente a su ala mayor), lateral y anterior al hueso occipital, e inferior al hueso parietal. Su compleja anatomía lo convierte en un componente destacado del esqueleto craneal, participando tanto en la bóveda como en la base del cráneo.</p>
+                <p>El hueso temporal se constituye, antes del nacimiento, a partir de tres porciones distintas: la porción escamosa (o escama), el hueso timpánico (o parte timpánica) y la porción petrosa (o peñasco). Durante el desarrollo, estas porciones crecen y se sueldan...</p>
+                <div class="visual-placeholder">
+                    [Aquí iría un diagrama simple del cráneo con el hueso temporal resaltado]
+                </div>
+            </section>
+
+            <section id="escamosa">
+                <h2>1. Porción Escamosa</h2>
+                <p>Es una lámina semicircular, aplanada de lateral a medial.</p>
+
+                <h3 id="escamosa-caras">Caras:</h3>
+                <p>Presenta dos caras separadas por un borde circunferencial.</p>
+                <ul>
+                    <li>Cara Exocraneal (o Temporal): Se orienta hacia el exterior del cráneo. Está dividida en dos partes por una larga apófisis denominada apófisis cigomática.
+                        <ul>
+                            <li>Parte superior o temporal.</li>
+                            <li>Parte inferior o basilar.</li>
+                        </ul>
+                    </li>
+                    <li>Cara Endocraneal (o Cerebral): Se orienta hacia el interior del cráneo y se relaciona con el cerebro.</li>
+                </ul>
+
+                <h3 id="escamosa-apofisis">Apófisis Cigomática:</h3>
+                <p>Se origina de la cara exocraneal. Comprende dos segmentos: uno transversal (base) y otro anteroposterior (apófisis cigomática propiamente dicha). El segmento basal se dirige de lateral a medial y está aplanado de superior a inferior... (continuar descripción).</p>
+                <div class="visual-placeholder">
+                    [Aquí iría un diagrama o modelo 3D de la porción escamosa, mostrando la apófisis cigomática y las caras]
+                </div>
+
+                <h3 id="escamosa-bordes">Bordes:</h3>
+                <p>Presenta un borde circunferencial.</p>
+
+                <h3 id="escamosa-articulaciones">Articulaciones:</h3>
+                <ul>
+                    <li>Se articula superior y posteriormente con el hueso parietal mediante la sutura escamosa.</li>
+                    <li>Se articula anteriormente con el ala mayor del hueso esfenoides mediante la sutura esfenoescamosa.</li>
+                    <li>Contribuye a la fosa temporal... (continuar descripción).</li>
+                    <li>Contribuye a la articulación temporomandibular a través de la fosa mandibular.</li>
+                </ul>
+
+                 <h3 id="escamosa-estructura">Estructura:</h3>
+                 <p>Es muy delgada. Está formada por tejido óseo compacto, aunque contiene tejido esponjoso en sus porciones anterior y superior.</p>
+                 </section>
+
+            <section id="petrosa">
+                <h2>2. Porción Petrosa (o Peñasco)</h2>
+                <p>Es la porción más compleja del hueso temporal y adopta la forma de una pirámide cuadrangular. Su eje mayor es oblicuo, dirigido anterior y medialmente.</p>
+
+                 <h3 id="petrosa-base-vertice">Base y Vértice:</h3>
+                <p>La base está orientada lateral y posteriormente... (continuar descripción).</p>
+
+                <h3 id="petrosa-caras">Caras:</h3>
+                <p>Se pueden reconocer cuatro caras. Dos son superiores y endocraneales, y dos son inferiores y exocraneales.</p>
+                <h4>Caras Superiores (Endocraneales):</h4>
+                <ul>
+                    <li>Cara Anterosuperior: Se relaciona con el cerebro. Presenta la eminencia arcuata (o arqueada)... (continuar descripción).</li>
+                    <li>Cara Posterosuperior: Se relaciona con el cerebelo.</li>
+                </ul>
+                 <h4>Caras Inferiores (Exocraneales):</h4>
+                 <ul>
+                     <li>Cara Posteroinferior: Se relaciona con la superficie exterior de la base del cráneo. Contiene el orificio inferior del conducto carotídeo.</li>
+                     <li>Cara Anteroinferior: Carece de terminología específica... (continuar descripción).</li>
+                 </ul>
+
+                <div class="visual-placeholder">
+                    [Aquí iría un diagrama o modelo 3D de la porción petrosa, mostrando sus caras y forma piramidal]
+                </div>
+
+
+                <h3 id="petrosa-bordes">Bordes:</h3>
+                <p>Presenta cuatro bordes.</p>
+                <ul>
+                    <li>Borde Superior: Recorrido en gran parte por el surco del seno petroso superior... (continuar descripción).</li>
+                    <li>Borde Anterior: Presenta posteriormente la fisura petrotimpanoescamosa... (continuar descripción).</li>
+                    <li>Borde Posterior: Presenta la carilla yugular posteriormente... (continuar descripción detallada de agujero yugular, fosita petrosa, etc.).</li>
+                    <li>Borde Inferior: Separa las caras anteroinferior y posteroinferior.</li>
+                </ul>
+
+                <h3 id="petrosa-articulaciones">Articulaciones:</h3>
+                <p>Se articula con el ala mayor del esfenoides, el hueso occipital en el agujero yugular, y la porción timpánica y escamosa.</p>
+
+                <h3 id="petrosa-estructura">Estructura:</h3>
+                <p>Presenta importantes conjuntos de tejido óseo esponjoso, especialmente alrededor de las cavidades del órgano vestibulococlear y cerca del vértice. Este tejido esponjoso contiene cavidades, las células del temporal.</p>
+
+                 <h3 id="petrosa-canales">Canales Vasculares y Nerviosos en la Porción Petrosa:</h3>
+                 <p>Dentro de la porción petrosa se encuentran varios conductos:</p>
+                 <ul>
+                     <li>Conducto Carotídeo: Da paso a la arteria carótida interna... (continuar descripción).</li>
+                     <li>Conducto Auditivo Interno (CAI): Contiene el nervio facial, el nervio vestibulococlear y la arteria laberíntica.</li>
+                     <li>Conductillo Carotidotimpánico: Se extiende desde la pared lateral... (continuar descripción).</li>
+                      <li>Conducto para el Nervio Facial (Acueducto de Falopio): Contiene el nervio facial.</li>
+                      <li>Canal Subarcuato o Petromastoideo y Canal Singular: Mencionados en la evaluación por CT... (continuar descripción).</li>
+                 </ul>
+                  <div class="visual-placeholder">
+                    [Aquí iría un diagrama o modelo 3D en corte transversal de la porción petrosa, mostrando los canales y cavidades internas]
+                  </div>
+
+            </section>
+
+             <section id="timpanica">
+                 <h2>3. Porción Timpánica</h2>
+                 <p>Es una de las tres piezas óseas que confluyen para formar el hueso temporal antes del nacimiento. En el adulto, a veces se asocia con la porción petrosa para formar la porción petrotimpánica. Constituye la porción ósea del conducto auditivo externo y representa la "tapa" lateral de las cavidades del oído medio. Es delgada.</p>
+                 <p>Se une a la porción escamosa por la fisura timpanoescamosa y a la porción petrosa por la fisura timpanomastoidea.</p>
+                  <div class="visual-placeholder">
+                    [Aquí iría un diagrama que muestre la porción timpánica y su relación con las otras partes del temporal]
+                  </div>
+             </section>
+
+              <section id="mastoidea">
+                 <h2>4. Porción Mastoidea</h2>
+                 <p>Es una región del hueso temporal, considerada una de sus porciones principales en el adulto.</p>
+
+                  <h3 id="mastoidea-relacion">Relación:</h3>
+                 <p>Constituye el segmento posterior de la porción escamosa.</p>
+
+                 <h3 id="mastoidea-bordes">Bordes:</h3>
+                 <p>Presenta un borde superior (articular con el parietal) y un borde posterior (articular con el occipital).</p>
+
+                 <h3 id="mastoidea-articulaciones">Articulaciones:</h3>
+                 <ul>
+                     <li>Se articula posteriormente con el hueso occipital mediante la sutura occipitomastoidea.</li>
+                     <li>También presenta la escotadura parietal (forma de U o V)... (continuar descripción).</li>
+                     <li>Se articula con la apófisis yugular del hueso occipital.</li>
+                 </ul>
+
+                 <h3 id="mastoidea-inserciones">Inserciones Musculares:</h3>
+                 <p>Sirve de inserción a varios músculos, incluyendo el esternocleidomastoideo, esplenio de la cabeza, longísimo de la cabeza y digástrico.</p>
+
+                  <h3 id="mastoidea-estructura">Estructura Interna:</h3>
+                  <p>Presenta importantes conjuntos de tejido óseo esponjoso con cavidades, las células mastoideas (o células del temporal).</p>
+
+                  <h3 id="mastoidea-caracteristicas">Características Superficiales:</h3>
+                  <p>En su superficie se encuentran la escotadura mastoidea y la eminencia yuxtamastoidea. La cresta supramastoidea se continúa posteriormente con la línea temporal inferior del hueso parietal.</p>
+
+                   <div class="visual-placeholder">
+                    [Aquí iría un diagrama o modelo 3D de la porción mastoidea, mostrando sus características y ubicación]
+                  </div>
+             </section>
+
+             <section id="estiloides">
+                <h2>5. Apófisis Estiloides</h2>
+                <p>Mencionada como una de las partes del hueso temporal. Es una prolongación vertical. Sirve de inserción a los músculos estilofaríngeo, estilogloso y estilohioideo. Es visible en algunas figuras del hueso temporal.</p>
+                 <div class="visual-placeholder">
+                    [Aquí iría un diagrama o modelo 3D que muestre la apófisis estiloides]
+                  </div>
+             </section>
+
+             <section id="estructuras-internas">
+                 <h2>Estructuras Internas Clave (Cavidades del Oído)</h2>
+                 <p>La porción petrosa aloja gran parte de las cavidades del oído, incluyendo el oído medio y el oído interno. El oído medio (cavidad timpánica, anexos mastoideos, trompa auditiva) se encuentra excavado dentro del temporal. El oído interno (laberinto) contiene el vestíbulo, la cóclea y los conductos semicirculares.</p>
+                 <div class="visual-placeholder">
+                    [Aquí iría un diagrama detallado o un modelo 3D interactivo de las cavidades del oído dentro del hueso temporal]
+                 </div>
+                 </section>
+
+
+             <section id="vascularizacion">
+                 <h2>Vascularización e Inervación</h2>
+                 <p>Los huesos, incluido el temporal, están perforados por numerosos orificios llamados forámenes nutricios, que dan acceso a los conductos nutricios por donde penetran los vasos encargados de su nutrición. Estos orificios y conductos son de tres órdenes según su tamaño y localización. Los vasos y nervios siguen el trayecto de las arterias.</p>
+                 <p>El hueso temporal es particularmente rico en conductos que permiten el paso de vasos y nervios importantes entre la cavidad craneal y otras regiones, como el conducto carotídeo, el conducto auditivo interno y el agujero yugular.</p>
+                  <div class="visual-placeholder">
+                    [Diagrama que muestre los forámenes nutricios o los principales conductos de paso de vasos y nervios]
+                 </div>
+             </section>
+
+             <section id="osificacion">
+                 <h2>Osificación</h2>
+                 <p>El hueso temporal se desarrolla a partir de cuatro porciones diferentes, constituidas antes del nacimiento a partir de tejido conjuntivo (osificación membranosa) o de un esbozo cartilaginoso (osificación cartilaginosa).</p>
+                 <ul>
+                     <li>La porción escamosa y el hueso timpánico son de origen membranoso.</li>
+                     <li>La porción petrosa se forma a partir de tejido cartilaginoso.</li>
+                     <li>Según Augier, la porción escamosa tiene uno o dos centros de osificación principales... (continuar descripción detallada si se desea).</li>
+                 </ul>
+                  <div class="visual-placeholder">
+                    [Diagrama que muestre las porciones de osificación antes de la fusión]
+                 </div>
+             </section>
+
+             <section id="tecnicas">
+                 <h2>Técnicas de Estudio y Visualización</h2>
+                 <p>El estudio del hueso temporal y sus cavidades internas es complejo, pero fundamental para comprender la anatomía del oído. Técnicas como la Tomografía Computada (TC) con renderización de volumen permiten visualizar esta anatomía tridimensionalmente de manera simplificada.</p>
+                  <div class="visual-placeholder">
+                    [Ejemplo de imagen de TC del hueso temporal]
+                 </div>
+             </section>
+
+        </main>
+    </div>
+
+    <footer>
+        </footer>
+
+</body>
+</html>
